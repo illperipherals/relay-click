@@ -1,6 +1,0 @@
-{
-  "name": "Relay-click",
-  "tagline": "create repository for ble controlled relay click board",
-  "body": "<!doctype html>\r\n<html>\r\n  <head>\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>BLE RelayClick Demo</title>\r\n    <meta name=\"description\" conten=\"Control Mikroeletronica Ckick Board over BLE with Arduino101\"\r\n  </head>\r\n  <body>\r\n    <div id=\"container\">\r\n      <button id=\"bleConnectButton\">RELAY CONNECT</button>\r\n      <button id=\"relayOneButton\">RELAY ONE</button>\r\n      <button id=\"relayTwoButton\">RELAY TWO</button>\r\n    </dev>\r\n    <script src=\"relayClick.js\"></script>\r\n    <script src=\"app.js\"></script>  \r\n  </body>\r\n</html>",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}
