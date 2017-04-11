@@ -1,9 +1,67 @@
+$color1: rgb(34,135,201);  //blue
+$color2: rgb(88,209,133);  //green
+$color3: rgb(255,211,102); //yellow
+$color4: rgb(251,136,95);  //orange
+$color5: rgb(255,90,95);   //red
+$font:   'Circular';
+$margin: 14px;
+$radius: 100px;
+$speed:  300ms;
+
+/* -------------------------------- 
+// GENERAL
+-------------------------------- */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  position: relative;
+  text-rendering:optimizeLegibility;
+	-webkit-font-smoothing:antialiased;
+  font-family: 'Circular', Arial, Helvetica, sans-serif;
+  background-color:#384047;
+}
+
+/* -------------------------------- 
+// SELECTION COLORS
+-------------------------------- */
+::selection {
+  background-color:rgba(75,95,120,0.1);
+}
+::-webkit-selection {
+  background-color:rgba(75,95,120,0.1);
+}
+::-moz-selection {
+  background-color:rgba(75,95,120,0.1);
+}
+
 html {
-  background: url(/relay-click/images/HAL9000.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+body {
+  display:flex;
+  padding:$margin;
+  font-family: $font, Helvetica, Arial, sans-serif;
+  line-height:1.4;
+  text-align:center;
+  color:$color7;
 }
 
 *,
@@ -29,7 +87,6 @@ html {
   cursor: pointer;
 }
 
-/* DEMO 4 */
 .switch {
   top: 50px;
   left: 50px;
@@ -38,7 +95,7 @@ html {
  position: relative;
 }
 
-/*.switch label {
+.switch label {
   width: 100%;
   height: 100%;
   position: relative;
@@ -70,30 +127,9 @@ html {
     0 5px 8px rgba(0,0,0,0.3),
     0 10px 10px 4px rgba(0,0,0,0.3);
   z-index: -1;
-}*/
-
-.switch label {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    color: #a5a39d;
-    font-size: 70px;
-    text-align: center;
-    line-height: 115px;
-    text-shadow: 0 2px 1px rgba(0,0,0,0.25);
-    border-radius: 50%;
-    background: #b25244; /* Fallback */
-    background: linear-gradient(#f7f2f6, #b2ac9e);
-    transition: all 0.3s ease-out;
-    z-index: -1;
-    box-shadow:
-        inset 0 2px 3px rgba(255,255,255,0.13),
-        0 5px 8px rgba(0,0,0,0.3),
-        0 10px 10px 4px rgba(0,0,0,0.3);
 }
 
-/*.switch label:after {
+.switch label:after {
   content: "";
   position: absolute;
   left: -20px;
@@ -124,55 +160,18 @@ html {
   -ms-filter:blur(1px);
   -o-filter:blur(1px);
   filter: blur(1px);
-}*/
-
-.switch label:before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    right: -10px;
-    top: -10px;
-    bottom: -10px;
-    z-index: -1;
-    border-radius: inherit;
-    box-shadow: inset 0 10px 10px rgba(0,0,0,0.13);
-    -webkit-filter:blur(1px); /* Smooth trick */
-    filter: blur(1px); /* Future-proof */
 }
 
-.switch label:after {
-    content: "";
-    position: absolute;
-    left: -20px;
-    right: -20px;
-    top: -20px;
-    bottom: -20px;
-    z-index: -2;
-    border-radius: inherit;
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        0 1px 2px rgba(0,0,0,0.3),
-        0 0 10px rgba(0,0,0,0.15);
-}
-
-/*.switch input:checked ~ label {
+.switch input:checked ~ label {
   box-shadow:
     inset 0 2px 3px rgba(255,255,255,0.13),
     0 5px 8px rgba(0,0,0,0.35),
     0 3px 10px 4px rgba(0,0,0,0.2);
   /* color: #9abb82; */
   color: #0000ff; /* change to blue for bluetooth */
-/*} */
-
-.switch input:checked ~ label { /* Button */
-    color: #9abb82;
-    box-shadow:
-        inset 0 2px 3px rgba(255,255,255,0.13),
-        0 5px 8px rgba(0,0,0,0.35),
-        0 3px 10px 4px rgba(0,0,0,0.2);
 }
 
-/*.switch .icon-off:after {
+.switch .icon-off:after {
   content: "";
   display: block;
   position: relative;
@@ -193,24 +192,81 @@ html {
   box-shadow:
     0 -2px 5px rgba(255,255,255,0.05),
     0 2px 5px rgba(255,255,255,0.1);
-}*/
+}
 
-.switch .icon-off:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    left: 50%;
-    top: 50%;
-    z-index: -1;
-    margin: -35% 0 0 -35%;
-    border-radius: 50%;
-    background: #d2cbc3; /* Fallback */
-    background: linear-gradient(#cbc7bc, #d2cbc3);
-    box-shadow:
-        0 -2px 5px rgba(255,255,255,0.05),
-        0 2px 5px rgba(255,255,255,0.1);
-    -webkit-filter:blur(1px); /* Smooth trick */
-    filter: blur(1px); /* Future-proof */
+/* --------------------------------
+// CONTENT
+-------------------------------- */
+.colors {
+  width:100%;
+  max-width:375px;
+  margin:auto;
+}
+  p {
+    margin-bottom:$margin;
+  }
+
+/* --------------------------------
+// BOXES
+-------------------------------- */
+.box {
+  display:block;
+  width:100%;
+  margin:auto;
+  margin-top:$margin/2;
+  padding:$margin;
+  color:#fff;
+  border-radius:$radius;
+  overflow:hidden;
+  line-height:$margin*2;
+  text-transform:uppercase;
+  text-shadow:2px 2px 0 rgba(0,0,0,0.2);
+  background-color:$color6;
+  box-shadow:inset 0 25px 0px rgba(255,255,255,0.1);
+  cursor:pointer;
+  pointer-events:auto;
+  -webkit-transition:all $speed;
+          transition:all $speed;
+
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+  .no-touch .box:hover {
+    padding:$margin*2;
+  }
+  .box:active {
+    -webkit-transition-duration:$speed/2;
+            transition-duration:$speed/2;
+    -webkit-transform:scale3d(0.9,0.9,1);
+            transform:scale3d(0.9,0.9,1);
+  }
+  .touch .box:active {
+    padding:$margin*2;
+    -webkit-transition-duration:$speed/2;
+            transition-duration:$speed/2;
+    -webkit-transform:scale3d(0.9,0.9,1);
+            transform:scale3d(0.9,0.9,1);
+  }
+
+/* --------------------------------
+// COLORS
+-------------------------------- */
+.box.blue {
+  background-color:$color1;
+}
+.box.green {
+  background-color:$color2;
+}
+.box.yellow {
+  background-color:$color3;
+}
+.box.orange {
+  background-color:$color4;
+}
+.box.red {
+  background-color:$color5;
 }

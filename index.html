@@ -1,21 +1,191 @@
-<!doctype html>
+<!-- Based off the stylings of Marcelo Davanzo at http://codepen.io/marcelodavanzo/pen/WvKNbm#presentation -->
+
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLE RelayClick Demo</title>
-    <meta name="description" conten="Control Mikroeletronica Ckick Board over BLE with Arduino101">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web Bluetooth LED demo.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/relay-click/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="/relay-click/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/relay-click/fonts/fontawesome-webfont.ttf"/>
-  </head>
-  <body>
-    <div class="switch">
-      <input type="checkbox" id="bleSwitch">
-      <label><i class="fa fa-bluetooth"></i></label>
-    </div>
-    <script src="/relay-click/annyang/annyang.min.js"></script>
-    <script src="relayClick.js"></script>
-    <script src="app.js"></script>
-  </body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <style>
+        /* --------------------------------
+// GENERAL
+-------------------------------- */
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0 auto;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.4;
+            position: relative;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* --------------------------------
+// SELECTION COLORS
+-------------------------------- */
+
+         ::selection {
+            background-color: rgba(75, 95, 120, 0.1);
+        }
+
+         ::-webkit-selection {
+            background-color: rgba(75, 95, 120, 0.1);
+        }
+
+         ::-moz-selection {
+            background-color: rgba(75, 95, 120, 0.1);
+        }
+    </style>
+
+    <style>
+        /* --------------------------------
+// VARS
+-------------------------------- */
+
+        body {
+            display: flex;
+            padding: 14px;
+            font-family: "Circular", Helvetica, Arial, sans-serif;
+            line-height: 1.4;
+            text-align: center;
+            color: #657380;
+        }
+        /* --------------------------------
+// CONTENT
+-------------------------------- */
+
+        .wrapper {
+            width: 100%;
+            max-width: 375px;
+            margin: auto;
+        }
+
+        p {
+            margin-bottom: 14px;
+        }
+        /* --------------------------------
+// BOXES
+-------------------------------- */
+
+        .box {
+            display: block;
+            width: 100%;
+            margin: auto;
+            margin-top: 7px;
+            padding: 14px;
+            color: #fff;
+            border-radius: 100px;
+            overflow: hidden;
+            line-height: 28px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+            background-color: #384047;
+            box-shadow: inset 0 25px 0px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            pointer-events: auto;
+            -webkit-transition: all 300ms;
+            transition: all 300ms;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .no-touch .box:hover {
+            padding: 28px;
+        }
+
+        .box:active {
+            -webkit-transition-duration: 150ms;
+            transition-duration: 150ms;
+            -webkit-transform: scale3d(0.9, 0.9, 1);
+            transform: scale3d(0.9, 0.9, 1);
+        }
+
+        .touch .box:active {
+            padding: 28px;
+            -webkit-transition-duration: 150ms;
+            transition-duration: 150ms;
+            -webkit-transform: scale3d(0.9, 0.9, 1);
+            transform: scale3d(0.9, 0.9, 1);
+        }
+        /* --------------------------------
+// COLORS
+-------------------------------- */
+
+        .box.blue {
+            background-color: #2287c9;
+        }
+
+        .box.green {
+            background-color: #58d185;
+        }
+
+        .box.yellow {
+            background-color: #ffd366;
+        }
+
+        .box.orange {
+            background-color: #fb885f;
+        }
+
+        .box.red {
+            background-color: #ff5a5f;
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+</head>
+
+<body translate="no">
+
+    <body ontouchstart="">
+        <div class="switch">
+            <input type="checkbox" id="bleSwitch">
+            <label><i class="fa fa-bluetooth"></i></label>
+        </div>
+        <div class="wrapper">
+            <a rel="nofollow" rel="noreferrer" class="box blue">Blue</a>
+            <a rel="nofollow" rel="noreferrer" class="box green">Green</a>
+            <a rel="nofollow" rel="noreferrer" class="box yellow">Yellow</a>
+            <a rel="nofollow" rel="noreferrer" class="box orange">Orange</a>
+            <a rel="nofollow" rel="noreferrer" class="box red">Red</a>
+        </div>
+        <script src="/relay-click/annyang/annyang.min.js"></script>
+        <script src="relayClick.js"></script>
+        <script src="app.js"></script>
+    </body>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+</body>
+
 </html>

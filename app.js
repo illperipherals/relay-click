@@ -11,20 +11,61 @@ let bleSwitch = document.querySelector('#bleSwitch');
 if (annyang){
  
   var relayOne = function(){
-    console.log('relay One');
+    console.log('Relay One');
     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
-   .then(() => console.log('wrote 1'))
+   .then(() => console.log('Wrote 1'))
    .catch(error => {console.log('write error');
    });
   };
   
   var relayTwo = function(){
-   console.log('relay Two'); 
+   console.log('Relay Two'); 
    relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([2]))
-   .then(() => console.log('wrote 2'))
+   .then(() => console.log('Wrote 2'))
    .catch(error => {console.log('write error');
    });
   };
+ 
+//    var callBlue = function(){
+//     console.log('Blue: ');
+//     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
+//    .then(() => console.log('Wrote Blue'))
+//    .catch(error => {console.log('write error');
+//    });
+//   };
+ 
+//    var callGreen = function(){
+//     console.log('Green: ');
+//     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
+//    .then(() => console.log('Wrote Green'))
+//    .catch(error => {console.log('write error');
+//    });
+//   };
+ 
+//    var callYellow = function(){
+//     console.log('Yellow: ');
+//     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
+//    .then(() => console.log('Wrote Yellow'))
+//    .catch(error => {console.log('write error');
+//    });
+//   };
+ 
+//    var callOrange = function(){
+//     console.log('Orange: ');
+//     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
+//    .then(() => console.log('Wrote Orange'))
+//    .catch(error => {console.log('write error');
+//    });
+//   };
+ 
+//    var callRed = function(){
+//     console.log('Red: ');
+//     relayClick._writeCharacteristic(relayClick.characteristic1UUID, new Uint8Array([1]))
+//    .then(() => console.log('Wrote Red'))
+//    .catch(error => {console.log('write error');
+//    });
+//   };
+ 
   /**
    * Key value paris of voice commands, list can be expanded at will.
    */
@@ -33,26 +74,28 @@ if (annyang){
     'relay1': relayOne,
     'one': relayOne,
     '1': relayOne,
-    'lamp': relayOne,
-    'desklamp': relayOne,
-    'desk lamp': relayOne,
     'relay 2': relayTwo,
     'relay2': relayTwo,
     'two': relayTwo,
     '2': relayTwo
+//     'blue': callBlue,
+//     'green': callGreen,
+//     'yellow': callYellow,
+//     'orange': callOrange,
+//     'red': callRed,
   };
   
   // with annyang.debug below these call backs could be removed I think . . .
-  annyang.addCallback('resultMatch',function(userSaid,commandText,phrases){
-    console.log(userSaid);
-    console.log(commandText);
-    console.log(phrases);
-  });
+//   annyang.addCallback('resultMatch',function(userSaid,commandText,phrases){
+//     console.log(userSaid);
+//     console.log(commandText);
+//     console.log(phrases);
+//   });
   
-  annyang.addCallback('resultNoMatch',function(phrases){
-    console.log('no match');
-    console.log(phrases);
-  });
+//   annyang.addCallback('resultNoMatch',function(phrases){
+//     console.log('no match');
+//     console.log(phrases);
+//   });
   
   annyang.debug();
   annyang.addCommands(commands);
